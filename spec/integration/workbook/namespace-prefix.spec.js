@@ -3,6 +3,13 @@ const JSZip = require('jszip');
 const ExcelJS = verquire('exceljs');
 
 const SPREADSHEET_MAIN_NS = 'http://schemas.openxmlformats.org/spreadsheetml/2006/main';
+const EXTENDED_PROPS_NS = 'http://schemas.openxmlformats.org/officeDocument/2006/extended-properties';
+
+function prefixDefaultNs(xml, ns, prefix) {
+  return xml
+    .replace(new RegExp(`xmlns="${ns}"`, 'g'), `xmlns:${prefix}="${ns}"`)
+    .replace(/<(\/?)(?!\?|!)([a-zA-Z][^\s/>:]*)(?=[\s/>])/g, `<$1${prefix}:$2`);
+}
 
 // .NET OpenXML SDK / ClosedXML emit spreadsheetml elements with a namespace prefix
 // ('<x:workbook xmlns:x="...">'). Rewrite a workbook produced by exceljs into that
@@ -32,9 +39,10 @@ async function buildPrefixedXlsxBuffer() {
   names.forEach((name, i) => {
     let xml = contents[i];
     if (/^xl\/.*\.xml$/.test(name) && xml.includes(`xmlns="${SPREADSHEET_MAIN_NS}"`)) {
-      xml = xml
-        .replace(new RegExp(`xmlns="${SPREADSHEET_MAIN_NS}"`, 'g'), `xmlns:x="${SPREADSHEET_MAIN_NS}"`)
-        .replace(/<(\/?)(?!\?|!)([a-zA-Z][^\s/>]*)/g, '<$1x:$2');
+      xml = prefixDefaultNs(xml, SPREADSHEET_MAIN_NS, 'x');
+    } else if (name === 'docProps/app.xml' && xml.includes(`xmlns="${EXTENDED_PROPS_NS}"`)) {
+      // Hancell binds the extended-properties namespace to a prefix as well
+      xml = prefixDefaultNs(xml, EXTENDED_PROPS_NS, 'ep');
     }
     rebuilt.file(name, xml);
   });
