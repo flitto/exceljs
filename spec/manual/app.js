@@ -5,7 +5,7 @@
 const fs = require('fs');
 const express = require('express');
 const path = require('path');
-const ExcelJS = require('../../lib/exceljs.nodejs.js');
+const ExcelJS = require('../../lib/exceljs.nodejs');
 const StreamBuf = require('../../lib/utils/stream-buf');
 
 console.log('Copying bundle.js to public folder');
@@ -18,7 +18,7 @@ fs.createReadStream(`${__dirname}/../../dist/exceljs.js`).pipe(
 
 const app = express();
 
-app.use('/', express.static(path.join(__dirname, 'public')));
+app.use('/', express.static(path.join(__dirname, 'public'), {dotfiles: 'allow' /* Express 5: preserve v4 behavior */}));
 
 app.post('/api/upload', (req, res) => {
   const wb = new ExcelJS.Workbook();

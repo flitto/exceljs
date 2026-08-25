@@ -123,7 +123,7 @@ module.exports = function(grunt) {
 
     jasmine: {
       options: {
-        version: '3.8.0',
+        version: '5.12.0',
         noSandbox: true,
       },
       dev: {

@@ -13,6 +13,9 @@
     "node": true
   },
   "rules": {
+    "arrow-body-style": ["off"],
+    "prefer-arrow-callback": ["off"],
+    "grouped-accessor-pairs": ["off"],
     "arrow-parens": ["error", "as-needed"],
     "class-methods-use-this": ["off"],
     "comma-dangle": ["error", {"arrays": "always-multiline", "objects": "always-multiline", "imports": "always-multiline", "exports": "always-multiline", "functions": "never"}],
