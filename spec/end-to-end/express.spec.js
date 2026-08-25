@@ -1,4 +1,3 @@
-/* global fetch */
 const {Readable} = require('stream');
 const express = require('express');
 const testutils = require('../utils/index');
