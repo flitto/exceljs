@@ -133,5 +133,15 @@
     "regenerator-runtime": "0.14.1",
     "ts-node": "10.9.2",
     "typescript": "5.9.3"
+  },
+  "overrides": {
+    "puppeteer": "^25.8.0",
+    "minimist": "^1.2.8",
+    "exorcist": "^2.0.0",
+    "diff": "^9.0.0",
+    "serialize-javascript": "^7.1.0",
+    "elliptic": "^6.6.1",
+    "pacote": "^21.0.1",
+    "tar": "^7.5.21"
   }
 }
