@@ -18,7 +18,7 @@ fs.createReadStream(`${__dirname}/../../dist/exceljs.js`).pipe(
 
 const app = express();
 
-app.use('/', express.static(path.join(__dirname, 'public')));
+app.use('/', express.static(path.join(__dirname, 'public'), { dotfiles: 'allow' /* Express 5: preserve v4 behavior */ }));
 
 app.post('/api/upload', (req, res) => {
   const wb = new ExcelJS.Workbook();
