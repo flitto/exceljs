@@ -15,6 +15,13 @@
   "engines": {
     "node": ">=18"
   },
+  "devEngines": {
+    "runtime": {
+      "name": "node",
+      "version": ">=22.22.1",
+      "onFail": "warn"
+    }
+  },
   "main": "./excel.js",
   "browser": "./dist/exceljs.min.js",
   "types": "./index.d.ts",
