@@ -97,22 +97,21 @@
   ],
   "dependencies": {
     "archiver": "^8.0.0",
-    "dayjs": "^1.8.34",
-    "fast-csv": "^4.3.1",
+    "dayjs": "1.11.21",
+    "fast-csv": "5.0.7",
     "jszip": "^3.10.1",
     "readable-stream": "^3.6.0",
     "saxes": "^5.0.1",
     "tmp": "^0.2.0",
-    "unzipper": "^0.10.11",
-    "uuid": "^8.3.0"
+    "unzipper": "^0.10.11"
   },
   "devDependencies": {
-    "@babel/cli": "^7.10.5",
-    "@babel/core": "^7.11.4",
-    "@babel/preset-env": "^7.11.0",
-    "@types/chai": "^4.2.12",
-    "@types/mocha": "^8.0.3",
-    "@types/node": "^14.11.2",
+    "@babel/cli": "^7.29.7",
+    "@babel/core": "^7.29.7",
+    "@babel/preset-env": "^7.29.7",
+    "@types/chai": "^4.3.20",
+    "@types/mocha": "^10.0.10",
+    "@types/node": "^18.19.130",
     "babelify": "^10.0.0",
     "browserify": "^16.5.2",
     "chai": "^4.2.0",
@@ -143,7 +142,7 @@
     "prettier-eslint-cli": "^5.0.0",
     "regenerator-runtime": "^0.13.7",
     "sax": "^1.2.4",
-    "ts-node": "^8.10.2",
-    "typescript": "^3.9.7"
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.3"
   }
 }
