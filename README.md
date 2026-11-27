@@ -64,6 +64,8 @@ I have just one request; If you submit a pull request for a bugfix, please add a
 Note: Please try to avoid modifying the package version in a PR.
 Versions are updated on release and any change will most likely result in merge collisions.
 
+Note: Git hooks are not installed automatically. After cloning and running `npm install`, run `npm run hooks:install` once to enable the pre-commit lint.
+
 To be clear, all contributions added to this library will be included in the library's MIT licence.
 
 ### Let's chat together:
