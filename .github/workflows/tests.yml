@@ -43,6 +43,30 @@ jobs:
         env:
           CI: true
 
+  lint:
+    timeout-minutes: 15
+    name: Lint
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 #latest v4. TODO upgrade
+      - uses: actions/setup-node@5e21ff4d9bc1a8cf6de233a3057d20ec6b3fb69d #latest  v3. TODO upgrade
+        with:
+          node-version: 22
+      - name: Create the npm cache directory
+        run: mkdir npm-cache && npm config set cache ./npm-cache --global
+      - name: Cache node modules
+        uses: actions/cache@704facf57e6136b1bc63b828d79edcd491f0ee84 #latest v3 TODO upgrade
+        with:
+          path: ./npm-cache
+          key: v1-npm-${{ hashFiles('**/package.json') }}
+          restore-keys: |
+            v1-npm-
+      - run: npm install
+      # spec/utils/verquire.js requires dist/es5, so lint only resolves after a build
+      - run: npm run build
+      - run: npm run lint
+
   benchmark:
     timeout-minutes: 15
     name: Measure performance impact of changes
